@@ -1,52 +1,60 @@
 import { ArrowRight } from 'lucide-react';
+import { LANGUAGES, flagUrl } from '../data/content';
 import { scrollToId } from '../lib/scroll';
 
 export default function Hero() {
   return (
-    <section id="hem" className="relative bg-paper">
-      <div className="container-x pb-28 pt-44 lg:pb-40 lg:pt-52">
-        {/* Eyebrow */}
-        <p className="eyebrow mb-10 animate-fade-up">
-          Personlig språkundervisning · Online
-        </p>
+    <section
+      id="hem"
+      className="relative flex min-h-screen items-center overflow-hidden bg-navy text-white"
+    >
+      {/* Bakgrund: glöd + prick-textur */}
+      <div className="pointer-events-none absolute inset-0 dot-grid" />
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -right-32 top-[-10%] h-[42rem] w-[42rem] animate-glow rounded-full bg-teal/25 blur-[120px]" />
+        <div className="absolute -left-40 bottom-[-20%] h-[34rem] w-[34rem] rounded-full bg-sand/15 blur-[120px]" />
+      </div>
 
-        {/* Stor rubrik med kursiv accent */}
-        <h1 className="display-xl max-w-5xl text-balance animate-fade-up [animation-delay:80ms]">
+      <div className="container-x relative w-full pt-32 pb-16">
+        <p className="eyebrow mb-8 animate-fade-up">Personlig språkundervisning · Online</p>
+
+        <h1 className="display-xl max-w-4xl text-white text-balance animate-fade-up [animation-delay:80ms]">
           Bemästra ett nytt språk,{' '}
-          <span className="italic text-teal">på riktigt.</span>
+          <span className="italic text-sand">på riktigt.</span>
         </h1>
 
-        {/* Underrad: text + länk i två kolumner (Ottoniq-style) */}
-        <div className="mt-16 grid gap-10 border-t border-navy/15 pt-10 animate-fade-up [animation-delay:160ms] md:grid-cols-[1fr_auto] md:items-end">
-          <p className="max-w-prose text-lg leading-relaxed text-body/80 text-pretty">
-            Lektioner i svenska, engelska, tyska, franska och spanska — med en lärare
-            som lär känna dig och formar varje timme efter dina mål. Inga mallar,
-            ingen massproduktion. Bara du och språket.
-          </p>
+        <p className="mt-8 max-w-xl text-lg leading-relaxed text-white/70 text-pretty animate-fade-up [animation-delay:160ms]">
+          Lektioner i fem språk med en lärare som lär känna dig och formar varje
+          timme efter dina mål. Inga mallar, ingen massproduktion — bara du och språket.
+        </p>
 
-          <div className="flex flex-col gap-4 sm:flex-row md:flex-col lg:flex-row">
-            <button onClick={() => scrollToId('#boka')} className="btn-primary">
-              Boka gratis konsultation
-              <ArrowRight className="h-4 w-4" />
-            </button>
-            <button onClick={() => scrollToId('#sprak')} className="btn-outline">
-              Se språken
-            </button>
-          </div>
+        <div className="mt-10 flex flex-wrap items-center gap-4 animate-fade-up [animation-delay:240ms]">
+          <button onClick={() => scrollToId('#boka')} className="btn-primary">
+            Boka gratis konsultation
+            <ArrowRight className="h-4 w-4" />
+          </button>
+          <button onClick={() => scrollToId('#sprak')} className="btn-ghost">
+            Se språken
+          </button>
         </div>
 
-        {/* Stödsiffror på en rad */}
-        <div className="mt-16 flex flex-wrap items-baseline gap-x-16 gap-y-6 animate-fade-up [animation-delay:240ms]">
-          {[
-            { n: '5', l: 'språk att välja mellan' },
-            { n: '100%', l: 'online via video' },
-            { n: 'Alla', l: 'nivåer välkomna' },
-          ].map((s) => (
-            <div key={s.l} className="flex items-baseline gap-3">
-              <span className="font-display text-4xl text-navy">{s.n}</span>
-              <span className="text-sm text-body/55">{s.l}</span>
-            </div>
-          ))}
+        {/* Flagg-rad: riktiga runda flaggor */}
+        <div className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-5 border-t border-white/10 pt-8 animate-fade-up [animation-delay:320ms]">
+          <span className="text-xs uppercase tracking-[0.2em] text-white/40">
+            Jag undervisar i
+          </span>
+          <div className="flex items-center gap-5">
+            {LANGUAGES.map((lang) => (
+              <div key={lang.code} className="flex items-center gap-2.5">
+                <span
+                  className="flag h-7 w-7 ring-white/20"
+                  style={{ backgroundImage: `url(${flagUrl(lang.flag)})` }}
+                  aria-hidden
+                />
+                <span className="text-sm font-medium text-white/80">{lang.code}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
