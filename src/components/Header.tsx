@@ -27,20 +27,20 @@ export default function Header() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
-        scrolled ? 'border-b border-navy/10 bg-paper/90 backdrop-blur-sm' : 'border-b border-transparent'
+        scrolled ? 'border-b border-white/10 bg-navy/90 backdrop-blur-md' : 'border-b border-transparent'
       }`}
     >
       <div className="container-x">
         <div className="flex h-20 items-center justify-between">
-          <Logo />
+          <Logo tone="light" />
 
-          <nav className="hidden items-center gap-10 md:flex">
+          <nav className="hidden items-center gap-9 md:flex">
             {NAV_ITEMS.slice(0, -1).map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleNav(e, item.href)}
-                className="text-sm tracking-tight text-navy/70 transition-colors hover:text-navy"
+                className="text-sm tracking-tight text-white/70 transition-colors hover:text-white"
               >
                 {item.label}
               </a>
@@ -50,33 +50,33 @@ export default function Header() {
           <a
             href="#kontakt"
             onClick={(e) => handleNav(e, '#kontakt')}
-            className="link-underline hidden md:inline-flex"
+            className="link-underline hidden border-white/30 text-white hover:border-sand hover:text-sand md:inline-flex"
           >
             Skriv till mig
           </a>
 
           <button
-            className="p-2 md:hidden"
+            className="p-2 text-white md:hidden"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Meny"
           >
-            {menuOpen ? <X className="h-6 w-6 text-navy" /> : <Menu className="h-6 w-6 text-navy" />}
+            {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
       </div>
 
       <div
-        className={`overflow-hidden border-navy/10 bg-paper transition-all duration-300 md:hidden ${
-          menuOpen ? 'max-h-96 border-b opacity-100' : 'max-h-0 opacity-0'
+        className={`overflow-hidden bg-navy transition-all duration-300 md:hidden ${
+          menuOpen ? 'max-h-96 border-b border-white/10 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <nav className="container-x flex flex-col py-4">
+        <nav className="container-x flex flex-col py-3">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={(e) => handleNav(e, item.href)}
-              className="border-b border-navy/10 py-4 text-sm tracking-tight text-navy/80 transition-colors last:border-0 hover:text-navy"
+              className="border-b border-white/10 py-4 text-sm tracking-tight text-white/80 transition-colors last:border-0 hover:text-sand"
             >
               {item.label}
             </a>
