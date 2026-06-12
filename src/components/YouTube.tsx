@@ -1,67 +1,58 @@
-import { Play, Youtube, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, Play } from 'lucide-react';
 import { YOUTUBE_VIDEOS, YOUTUBE_URL, IMAGES } from '../data/content';
 
 export default function VideoSection() {
   return (
-    <section id="videor" className="bg-white py-24 md:py-32">
+    <section id="videor" className="bg-cream py-24 md:py-36">
       <div className="container-x">
-        <div className="mb-16 max-w-2xl">
-          <span className="eyebrow">På YouTube</span>
-          <h2 className="display-lg mt-5 text-balance">
-            Lär dig gratis —{' '}
-            <span className="italic text-teal">boka sen.</span>
-          </h2>
-          <p className="mt-5 max-w-prose leading-relaxed text-body/70">
-            Korta, gratis videolektioner att börja med. Gillar du sättet jag
-            undervisar på? Då tar vi nästa steg tillsammans.
-          </p>
+        <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <p className="eyebrow mb-6">På YouTube</p>
+            <h2 className="display-lg text-balance">
+              Lär dig gratis, <span className="italic text-teal">boka sen.</span>
+            </h2>
+          </div>
+          <a
+            href={YOUTUBE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="link-underline shrink-0"
+          >
+            Alla videor på YouTube
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Skarpa thumbnails, ingen blur */}
+        <div className="grid gap-px border border-navy/15 bg-navy/15 md:grid-cols-3">
           {YOUTUBE_VIDEOS.map((video) => (
             <a
               key={video.id}
               href={YOUTUBE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="group overflow-hidden rounded-2xl border border-navy/[0.07] bg-cream transition-shadow duration-300 hover:shadow-[0_20px_50px_-30px_rgba(15,23,42,0.4)]"
+              className="group bg-cream"
             >
-              <div className="relative flex aspect-video items-center justify-center overflow-hidden">
+              <div className="relative aspect-video overflow-hidden">
                 <img
                   src={IMAGES.videoThumb}
                   alt={video.title}
-                  className="absolute inset-0 h-full w-full object-cover opacity-70 transition-opacity group-hover:opacity-80"
+                  className="h-full w-full object-cover grayscale transition-all duration-500 group-hover:grayscale-0"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent" />
-                <span className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-white/40 bg-white/20 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
-                  <Play className="ml-0.5 h-6 w-6 fill-white text-white" />
+                <div className="absolute inset-0 bg-navy/30 transition-colors group-hover:bg-navy/10" />
+                <span className="absolute left-4 top-4 flex h-12 w-12 items-center justify-center bg-paper text-navy transition-transform duration-300 group-hover:scale-110">
+                  <Play className="ml-0.5 h-5 w-5 fill-navy" />
                 </span>
-                <span className="absolute bottom-2 right-2 rounded bg-black/70 px-2 py-1 font-mono text-xs text-white">
+                <span className="absolute bottom-3 right-3 bg-navy px-2 py-1 font-mono text-xs text-cream">
                   {video.duration}
                 </span>
               </div>
-              <div className="p-5">
-                <h3 className="font-medium leading-snug text-navy">{video.title}</h3>
-                <div className="mt-2 flex items-center gap-2 text-xs text-body/50">
-                  <Youtube className="h-3.5 w-3.5 text-red-500" />
-                  <span>{video.views}</span>
-                </div>
+              <div className="p-6">
+                <h3 className="font-display text-xl leading-snug text-navy">{video.title}</h3>
+                <p className="mt-2 text-xs uppercase tracking-wider text-body/45">{video.views}</p>
               </div>
             </a>
           ))}
-        </div>
-
-        <div className="mt-12">
-          <a
-            href={YOUTUBE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-outline"
-          >
-            <Youtube className="h-4 w-4" />
-            Se alla videor på YouTube
-            <ExternalLink className="h-3.5 w-3.5" />
-          </a>
         </div>
       </div>
     </section>
