@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Calendar, Send, ArrowRight, Check } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { LANGUAGES, TIME_SLOTS, WEEK_DAYS } from '../data/content';
 
 export default function Booking() {
@@ -17,75 +17,62 @@ export default function Booking() {
     setSubmitted(true);
   };
 
-  const pill = (active: boolean) =>
-    `rounded-xl text-sm font-medium transition-all ${
+  // Skarpa val-knappar, ingen radius
+  const chip = (active: boolean) =>
+    `border px-4 py-3 text-sm font-medium tracking-tight transition-colors ${
       active
-        ? 'bg-navy text-cream shadow-sm'
-        : 'bg-cream text-navy hover:bg-teal/10 hover:text-teal'
+        ? 'border-navy bg-navy text-cream'
+        : 'border-navy/20 text-navy hover:border-navy'
     }`;
 
   return (
-    <section id="boka" className="bg-cream py-24 md:py-32">
+    <section id="boka" className="bg-paper py-24 md:py-36">
       <div className="container-x">
-        <div className="mb-16 max-w-2xl">
-          <span className="eyebrow">Kom igång</span>
-          <h2 className="display-lg mt-5 text-balance">
-            Boka din lektion
+        <div className="mb-16 max-w-3xl">
+          <p className="eyebrow mb-6">Kom igång</p>
+          <h2 className="display-lg text-balance">
+            Boka din <span className="italic text-teal">lektion.</span>
           </h2>
-          <p className="mt-5 max-w-prose leading-relaxed text-body/70">
+          <p className="mt-6 max-w-prose text-lg leading-relaxed text-body/75">
             Välj tid, språk och nivå — så hör jag av mig med en bekräftelse. Första
             konsultationen är helt kostnadsfri.
           </p>
         </div>
 
         {submitted ? (
-          <div className="mx-auto max-w-lg rounded-3xl border border-navy/5 bg-white p-12 text-center shadow-sm">
-            <span className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-teal/10">
-              <Check className="h-8 w-8 text-teal" />
-            </span>
-            <h3 className="font-display text-2xl text-navy">Tack, {form.name || 'och välkommen'}!</h3>
-            <p className="mt-3 text-body/70">
-              Din förfrågan om {lang} ({day} kl. {time}) är mottagen. Jag återkommer
-              inom 24 timmar.
+          <div className="border-t border-navy/15 pt-16 text-center">
+            <p className="eyebrow mb-6">Tack!</p>
+            <h3 className="display-lg mx-auto max-w-2xl text-balance">
+              Din förfrågan om <span className="italic text-teal">{lang}</span> är mottagen.
+            </h3>
+            <p className="mt-6 text-body/70">
+              {day} kl. {time}. Jag återkommer inom 24 timmar{form.name ? `, ${form.name}` : ''}.
             </p>
           </div>
         ) : (
-          <div className="mx-auto grid max-w-5xl items-start gap-8 lg:grid-cols-2">
-            {/* Kalender */}
-            <div className="rounded-3xl border border-navy/5 bg-white p-8 shadow-sm">
-              <h3 className="mb-6 flex items-center gap-2 font-display text-lg text-navy">
-                <Calendar className="h-5 w-5 text-teal" />
-                Välj dag och tid
-              </h3>
-
-              <div className="mb-6">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-body/50">
+          <div className="grid gap-16 border-t border-navy/15 pt-16 lg:grid-cols-2 lg:gap-20">
+            {/* Vänster: val */}
+            <div className="flex flex-col gap-10">
+              <div>
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-body/50">
                   Dag (denna vecka)
                 </p>
-                <div className="flex gap-2">
+                <div className="grid grid-cols-5 gap-2">
                   {WEEK_DAYS.map((d) => (
-                    <button
-                      key={d}
-                      onClick={() => setDay(d)}
-                      className={`flex-1 py-3 ${pill(day === d)}`}
-                    >
+                    <button key={d} onClick={() => setDay(d)} className={chip(day === d)}>
                       {d}
                     </button>
                   ))}
                 </div>
               </div>
 
-              <div className="mb-6">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-body/50">
+              <div>
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-body/50">
                   Tid
                 </p>
                 <div className="grid grid-cols-4 gap-2">
                   {TIME_SLOTS.map((t) => (
-                    <button
-                      key={t}
-                      onClick={() => setTime(t)}
-                      className={`py-2.5 ${pill(time === t)}`}
-                    >
+                    <button key={t} onClick={() => setTime(t)} className={chip(time === t)}>
                       {t}
                     </button>
                   ))}
@@ -93,7 +80,7 @@ export default function Booking() {
               </div>
 
               <div>
-                <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-body/50">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-body/50">
                   Språk
                 </p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -101,7 +88,7 @@ export default function Booking() {
                     <button
                       key={l.name}
                       onClick={() => setLang(l.name)}
-                      className={`flex items-center gap-2 px-3 py-2.5 ${pill(lang === l.name)}`}
+                      className={`flex items-center gap-2 ${chip(lang === l.name)}`}
                     >
                       <span>{l.flag}</span>
                       <span>{l.name}</span>
@@ -111,70 +98,68 @@ export default function Booking() {
               </div>
 
               {ready && (
-                <div className="mt-6 rounded-2xl border border-teal/20 bg-teal/5 p-4">
-                  <p className="text-sm font-semibold text-teal">Ditt val</p>
-                  <p className="mt-1 text-sm text-navy">
+                <div className="border-t border-navy/15 pt-6">
+                  <p className="text-xs uppercase tracking-[0.15em] text-body/50">Ditt val</p>
+                  <p className="mt-2 font-display text-2xl text-navy">
                     {lang} · {day} kl. {time}
                   </p>
                 </div>
               )}
             </div>
 
-            {/* Formulär */}
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-5 rounded-3xl border border-navy/5 bg-white p-8 shadow-sm"
-            >
-              <h3 className="flex items-center gap-2 font-display text-lg text-navy">
-                <Send className="h-5 w-5 text-teal" />
-                Dina uppgifter
-              </h3>
-
-              <div className="flex flex-col gap-1.5">
-                <label className="field-label">Namn</label>
+            {/* Höger: formulär med underkantsfält */}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+              <div>
+                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-body/50">
+                  Namn
+                </label>
                 <input
                   type="text"
                   required
                   placeholder="Ditt fullständiga namn"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="field"
+                  className="field mt-2"
                 />
               </div>
 
-              <div className="flex flex-col gap-1.5">
-                <label className="field-label">E-post</label>
+              <div>
+                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-body/50">
+                  E-post
+                </label>
                 <input
                   type="email"
                   required
                   placeholder="din@epost.se"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="field"
+                  className="field mt-2"
                 />
               </div>
 
-              <div className="flex flex-col gap-1.5">
-                <label className="field-label">Din nivå &amp; dina mål (valfritt)</label>
+              <div>
+                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-body/50">
+                  Din nivå &amp; dina mål (valfritt)
+                </label>
                 <textarea
-                  rows={4}
+                  rows={3}
                   placeholder="Berätta kort om var du är idag och vad du vill uppnå…"
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="field resize-none"
+                  className="field mt-2 resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={!ready}
-                className="flex w-full items-center justify-center gap-2 rounded-full bg-navy py-4 text-sm font-medium text-cream transition-colors hover:bg-teal disabled:cursor-not-allowed disabled:opacity-40"
+                className="mt-2 inline-flex items-center justify-center gap-2 bg-navy px-8 py-4 text-sm font-medium tracking-tight text-cream transition-colors hover:bg-teal disabled:cursor-not-allowed disabled:opacity-30"
               >
                 Skicka bokningsförfrågan
                 <ArrowRight className="h-4 w-4" />
               </button>
 
-              <p className="text-center text-xs leading-relaxed text-body/50">
+              <p className="text-xs leading-relaxed text-body/50">
                 Kostnadsfri första konsultation. Jag bekräftar via e-post inom 24 timmar.
               </p>
             </form>
