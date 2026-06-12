@@ -1,6 +1,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 //  Allt redigerbart innehåll samlat på ett ställe.
-//  Ändra texter, språk, priser, kontaktuppgifter här — komponenterna läser härifrån.
+//  Ändra texter, språk, kontaktuppgifter här — komponenterna läser härifrån.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export interface NavItem {
@@ -20,51 +20,62 @@ export const NAV_ITEMS: NavItem[] = [
 export interface Language {
   name: string;
   native: string;
+  code: string;        // visas stort (SV, EN, DE…)
+  flag: string;        // ISO-landskod för flaggbild (se flagUrl nedan)
   tagline: string;
   description: string;
-  flag: string;
+}
+
+// Runda, skarpa flaggor hämtas från flagcdn.com (gratis, ingen nyckel).
+export function flagUrl(iso: string): string {
+  return `https://flagcdn.com/w160/${iso}.png`;
 }
 
 export const LANGUAGES: Language[] = [
   {
     name: 'Svenska',
     native: 'Svenska',
+    code: 'SV',
+    flag: 'se',
     tagline: 'För integration, studier & yrkesliv',
     description:
       'En trygg grund i svenska — från vardagssamtal till akademisk och professionell nivå.',
-    flag: '🇸🇪',
   },
   {
     name: 'Engelska',
     native: 'English',
+    code: 'EN',
+    flag: 'gb',
     tagline: 'Business & vardag',
     description:
       'Kommunicera med självförtroende i globala sammanhang, på jobbet och på resan.',
-    flag: '🇬🇧',
   },
   {
     name: 'Tyska',
     native: 'Deutsch',
+    code: 'DE',
+    flag: 'de',
     tagline: 'Nybörjare till avancerad',
     description:
       'Europas viktigaste affärsspråk — öppnar dörrar på en hel kontinent.',
-    flag: '🇩🇪',
   },
   {
     name: 'Franska',
     native: 'Français',
+    code: 'FR',
+    flag: 'fr',
     tagline: 'Le français authentique',
     description:
       'Det diplomatiska språket med global räckvidd och kulturell rikedom.',
-    flag: '🇫🇷',
   },
   {
     name: 'Spanska',
     native: 'Español',
+    code: 'ES',
+    flag: 'es',
     tagline: 'Para el mundo',
     description:
       'Talas av över 500 miljoner människor — ett av världens mest levande språk.',
-    flag: '🇪🇸',
   },
 ];
 
@@ -93,17 +104,6 @@ export const STEPS: Step[] = [
     description:
       'Med regelbunden träning och rätt metodik bygger du verklig förmåga — inte bara grammatik, utan äkta kommunikation.',
   },
-];
-
-export interface Quality {
-  text: string;
-}
-
-export const QUALITIES: Quality[] = [
-  { text: 'Personligt anpassad undervisning' },
-  { text: 'Flexibla tider, helt online' },
-  { text: 'Strukturerade kursplaner' },
-  { text: 'Alla nivåer välkomna' },
 ];
 
 export interface Video {
@@ -151,10 +151,10 @@ export const CONTACT: ContactItem[] = [
   { label: 'Undervisning', value: 'Alltid online via video', href: null },
 ];
 
-// Bilder — byt gärna mot egna. Pexels-länkar funkar direkt i bolt.
+// Bilder — byt gärna mot egna.
 export const IMAGES = {
   about:
-    'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=900',
+    'https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=1000',
   videoThumb:
     'https://images.pexels.com/photos/4144923/pexels-photo-4144923.jpeg?auto=compress&cs=tinysrgb&w=600',
 };
