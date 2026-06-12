@@ -1,72 +1,62 @@
-import { Check, Globe, Star } from 'lucide-react';
-import { QUALITIES, IMAGES } from '../data/content';
+import { IMAGES } from '../data/content';
 
 export default function About() {
   return (
-    <section id="om-mig" className="bg-cream py-24 md:py-32">
-      <div className="container-x grid items-center gap-16 lg:grid-cols-2">
-        {/* Porträtt */}
-        <div className="relative mx-auto w-full max-w-md lg:mx-0">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-navy/5">
+    <section id="om-mig" className="bg-paper py-24 md:py-36">
+      <div className="container-x">
+        {/* Rubrik först, bred */}
+        <div className="mb-16 max-w-4xl">
+          <p className="eyebrow mb-6">Om mig</p>
+          <h2 className="display-lg text-balance">
+            En lärare med ett <span className="italic text-teal">stort intresse</span> för
+            språk och människor.
+          </h2>
+        </div>
+
+        {/* Foto + bio i två kolumner, skarpa hörn */}
+        <div className="grid items-start gap-12 lg:grid-cols-[5fr_4fr] lg:gap-20">
+          <div>
             <img
               src={IMAGES.about}
               alt="Langflos lärare"
-              className="h-full w-full object-cover"
+              className="w-full object-cover"
+              style={{ aspectRatio: '4 / 5' }}
             />
-            <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-white/40 bg-white/90 p-4 backdrop-blur-sm">
-              <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-teal/10">
-                  <Star className="h-5 w-5 text-teal" />
-                </span>
-                <div>
-                  <p className="text-sm font-semibold text-navy">Certifierad språklärare</p>
-                  <p className="text-xs text-body/55">Erfarenhet av alla nivåer</p>
-                </div>
-              </div>
-            </div>
+            <p className="mt-4 text-xs uppercase tracking-[0.15em] text-body/40">
+              Langflo — språkundervisning online
+            </p>
           </div>
 
-          <div className="absolute -right-4 -top-4 hidden rounded-2xl border border-navy/5 bg-white p-4 shadow-lg lg:block">
-            <div className="flex items-center gap-3">
-              <Globe className="h-5 w-5 text-teal" />
+          <div className="flex flex-col gap-6 lg:pt-4">
+            <p className="font-display text-2xl leading-snug text-navy">
+              [Kort, fängslande mening om vem du är och vad du gör — t.ex. "Bor i X.
+              Undervisar i fem språk, alltid med fokus på riktig kommunikation."]
+            </p>
+
+            <div className="space-y-4 leading-relaxed text-body/75">
+              <p>
+                [Din biografi här — berätta om din bakgrund, din utbildning och din passion
+                för språk. Hur länge har du undervisat? Vilka är dina egna språkliga
+                erfarenheter?]
+              </p>
+              <p>
+                [Berätta om din undervisningsfilosofi — vad skiljer Langflo från andra lärare?
+                Fokus på kommunikation, anpassad metodik och personligt engagemang.]
+              </p>
+            </div>
+
+            {/* Två fakta med tunn linje ovanför */}
+            <div className="mt-4 grid grid-cols-2 gap-8 border-t border-navy/15 pt-6">
               <div>
-                <p className="font-display text-sm text-navy">5 språk</p>
-                <p className="text-xs text-body/55">undervisas</p>
+                <p className="text-xs uppercase tracking-[0.15em] text-body/40">Språk</p>
+                <p className="mt-1 font-display text-xl text-navy">5 st</p>
+              </div>
+              <div>
+                <p className="text-xs uppercase tracking-[0.15em] text-body/40">Undervisning</p>
+                <p className="mt-1 font-display text-xl text-navy">Online</p>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Bio */}
-        <div className="flex flex-col gap-6">
-          <span className="eyebrow">Om mig</span>
-          <h2 className="display-lg text-balance">
-            En lärare som bryr sig om{' '}
-            <span className="italic text-teal">ditt resultat.</span>
-          </h2>
-
-          <div className="space-y-4 max-w-prose leading-relaxed text-body/80">
-            <p>
-              [Din biografi här — berätta om din bakgrund, din utbildning och din passion
-              för språk. Hur länge har du undervisat? Vilka är dina egna språkliga
-              erfarenheter?]
-            </p>
-            <p>
-              [Berätta om din undervisningsfilosofi — vad skiljer Langflo från andra lärare?
-              Fokus på kommunikation, anpassad metodik och personligt engagemang.]
-            </p>
-          </div>
-
-          <ul className="mt-2 grid gap-4 sm:grid-cols-2">
-            {QUALITIES.map((q) => (
-              <li key={q.text} className="flex items-center gap-3">
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-teal/10">
-                  <Check className="h-4 w-4 text-teal" />
-                </span>
-                <span className="text-sm font-medium text-navy">{q.text}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>
