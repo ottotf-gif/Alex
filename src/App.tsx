@@ -10,7 +10,7 @@ import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <div className="bg-paper font-sans text-body">
+    <div className="bg-navy font-sans text-body">
       <Header />
       <main>
         <Hero />
