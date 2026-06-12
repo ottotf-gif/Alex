@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -13,8 +13,8 @@
 
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    background-color: #0B1220;
-    color: #334155;
+    background-color: #F6F3EC;
+    color: #1A1410;
   }
 
   h1, h2, h3 {
@@ -24,8 +24,8 @@
   }
 
   ::selection {
-    background-color: #2DD4BF;
-    color: #0B1220;
+    background-color: #F4C27A;
+    color: #1A1410;
   }
 }
 
@@ -34,21 +34,28 @@
     @apply max-w-6xl mx-auto px-6 md:px-10 lg:px-14;
   }
 
-  /* Knappar — skarpa hörn */
+  /* Primary: warm sand/amber fill on cream bg */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 bg-sand text-ink px-7 py-4 font-semibold text-sm tracking-tight hover:bg-sand-light transition-colors duration-300;
+    @apply inline-flex items-center justify-center gap-2 bg-ink text-cream px-7 py-4 font-semibold text-sm tracking-tight hover:bg-teal transition-colors duration-300;
   }
 
+  /* Secondary: outlined on light bg */
+  .btn-outline-ink {
+    @apply inline-flex items-center justify-center gap-2 border border-ink/30 text-ink px-7 py-4 font-medium text-sm tracking-tight hover:border-teal hover:text-teal transition-all duration-300;
+  }
+
+  /* Ghost: used on dark sections */
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 border border-white/25 text-white px-7 py-4 font-medium text-sm tracking-tight hover:bg-white/10 hover:border-white/50 transition-all duration-300;
   }
 
-  .btn-dark {
-    @apply inline-flex items-center justify-center gap-2 bg-ink text-white px-7 py-4 font-medium text-sm tracking-tight hover:bg-teal transition-colors duration-300;
+  /* Sand fill — used on dark sections */
+  .btn-sand {
+    @apply inline-flex items-center justify-center gap-2 bg-sand text-ink px-7 py-4 font-semibold text-sm tracking-tight hover:bg-sand-light transition-colors duration-300;
   }
 
   .eyebrow {
-    @apply text-xs font-semibold tracking-[0.22em] uppercase text-teal-light;
+    @apply text-xs font-semibold tracking-[0.22em] uppercase text-teal;
   }
 
   .eyebrow-sand {
@@ -56,7 +63,7 @@
   }
 
   .display-xl {
-    @apply font-display text-[3rem] leading-[1.0] sm:text-6xl lg:text-7xl tracking-tight;
+    @apply font-display text-[3rem] leading-[1.0] sm:text-6xl lg:text-[4.5rem] tracking-tight;
   }
 
   .display-lg {
@@ -67,17 +74,17 @@
     @apply inline-flex items-center gap-2 text-sm font-medium border-b pb-1 transition-colors;
   }
 
-  /* Mörkt formulärfält — underkantslinje */
+  /* Dark section field */
   .field-dark {
     @apply w-full border-0 border-b border-white/25 bg-transparent px-0 py-3 text-white placeholder:text-white/35 focus:outline-none focus:border-teal-light transition-colors text-base;
   }
 
-  /* Ljust formulärfält */
+  /* Light section field */
   .field-light {
-    @apply w-full border-0 border-b border-ink/25 bg-transparent px-0 py-3 text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors text-base;
+    @apply w-full border-0 border-b border-ink/20 bg-transparent px-0 py-3 text-ink placeholder:text-ink/30 focus:outline-none focus:border-teal transition-colors text-base;
   }
 
-  /* Rund flagga via bild */
+  /* Round flag via bg-image */
   .flag {
     @apply inline-block rounded-full bg-cover bg-center ring-1 ring-black/10 shrink-0;
   }
@@ -86,9 +93,16 @@
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .text-pretty { text-wrap: pretty; }
-  /* Subtil prick-textur för mörka sektioner */
+
+  /* Dot grid for dark sections */
   .dot-grid {
-    background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px);
     background-size: 22px 22px;
+  }
+
+  /* Very subtle grain texture for light sections */
+  .dot-grid-light {
+    background-image: radial-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 20px 20px;
   }
 }

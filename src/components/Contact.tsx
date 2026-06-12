@@ -12,29 +12,30 @@ export default function Contact() {
   };
 
   return (
-    <section id="kontakt" className="bg-paper py-24 text-ink md:py-32">
+    <section id="kontakt" className="bg-cream py-24 text-ink md:py-32">
       <div className="container-x">
         <div className="mb-16 max-w-4xl">
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.22em] text-teal">
-            Kontakt
-          </p>
+          <p className="eyebrow mb-5">Kontakt</p>
           <h2 className="display-lg text-ink text-balance">
-            Berätta vad du <span className="italic text-teal">vill uppnå.</span>
+            Berätta vad du{' '}
+            <span className="italic text-teal">vill uppnå.</span>
           </h2>
         </div>
 
-        <div className="grid gap-12 border-t border-ink/15 pt-16 lg:grid-cols-[4fr_6fr] lg:gap-20">
+        <div className="grid gap-12 border-t border-ink/10 pt-16 lg:grid-cols-[4fr_6fr] lg:gap-20">
           <div className="flex flex-col gap-8">
-            <p className="font-display text-xl text-ink">Jag hör av mig inom en dag.</p>
+            <p className="font-display text-xl leading-snug text-ink">
+              Jag hör av mig inom en dag.
+            </p>
 
             <div className="flex flex-col gap-6">
               {CONTACT.map((item) => (
                 <div key={item.label}>
-                  <p className="text-xs uppercase tracking-[0.15em] text-body/45">{item.label}</p>
+                  <p className="text-xs uppercase tracking-[0.15em] text-ink/35">{item.label}</p>
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="mt-1 inline-block border-b border-ink/30 pb-0.5 text-ink transition-colors hover:border-teal hover:text-teal"
+                      className="mt-1 inline-block border-b border-ink/20 pb-0.5 text-ink transition-colors hover:border-teal hover:text-teal"
                     >
                       {item.value}
                     </a>
@@ -48,14 +49,14 @@ export default function Contact() {
 
           {sent ? (
             <div className="flex flex-col justify-center">
-              <p className="font-display text-3xl text-ink text-balance">
+              <p className="font-display text-3xl leading-snug text-ink text-balance">
                 Tack för ditt meddelande! Jag återkommer inom ett dygn.
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-8">
               <div>
-                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-body/50">
+                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
                   Namn
                 </label>
                 <input
@@ -68,12 +69,9 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <div className="flex items-baseline justify-between">
-                  <label className="text-xs font-semibold uppercase tracking-[0.15em] text-body/50">
-                    E-post
-                  </label>
-                  <span className="text-xs uppercase tracking-[0.15em] text-body/35">Obligatoriskt</span>
-                </div>
+                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
+                  E-post
+                </label>
                 <input
                   type="email"
                   required
@@ -84,14 +82,11 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <div className="flex items-baseline justify-between">
-                  <label className="text-xs font-semibold uppercase tracking-[0.15em] text-body/50">
-                    Meddelande
-                  </label>
-                  <span className="text-xs uppercase tracking-[0.15em] text-body/35">Obligatoriskt</span>
-                </div>
+                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
+                  Meddelande
+                </label>
                 <textarea
-                  rows={3}
+                  rows={4}
                   required
                   placeholder="Berätta lite om dig och dina mål."
                   value={form.message}
@@ -99,7 +94,10 @@ export default function Contact() {
                   className="field-light mt-2 resize-none"
                 />
               </div>
-              <button type="submit" className="link-underline mt-2 w-fit border-ink/40 text-ink hover:border-teal hover:text-teal">
+              <button
+                type="submit"
+                className="link-underline mt-2 w-fit border-ink/30 text-ink hover:border-teal hover:text-teal"
+              >
                 Skicka meddelande
                 <ArrowRight className="h-4 w-4" />
               </button>

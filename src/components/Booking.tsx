@@ -18,45 +18,44 @@ export default function Booking() {
   };
 
   const chip = (active: boolean) =>
-    `border px-4 py-3 text-sm font-medium tracking-tight transition-colors ${
+    `border text-sm font-medium tracking-tight transition-all duration-200 px-4 py-3 ${
       active
-        ? 'border-sand bg-sand text-ink'
-        : 'border-white/20 text-white hover:border-white/60'
+        ? 'border-teal bg-teal text-white'
+        : 'border-ink/15 text-ink hover:border-teal/50 hover:text-teal'
     }`;
 
   return (
-    <section id="boka" className="relative overflow-hidden bg-navy py-24 text-white md:py-32">
-      <div className="pointer-events-none absolute inset-0 dot-grid opacity-50" />
-      <div className="pointer-events-none absolute -left-32 bottom-0 h-96 w-96 rounded-full bg-teal/15 blur-[120px]" />
-
-      <div className="container-x relative">
+    <section id="boka" className="bg-paper py-24 text-ink md:py-32">
+      <div className="container-x">
         <div className="mb-16 max-w-3xl">
-          <p className="eyebrow-sand mb-5">Kom igång</p>
-          <h2 className="display-lg text-white text-balance">
-            Boka din <span className="italic text-sand">lektion.</span>
+          <p className="eyebrow mb-5">Kom igång</p>
+          <h2 className="display-lg text-ink text-balance">
+            Boka din <span className="italic text-teal">lektion.</span>
           </h2>
-          <p className="mt-6 max-w-prose text-lg leading-relaxed text-white/70">
-            Välj tid, språk och nivå — så hör jag av mig med en bekräftelse. Första
-            konsultationen är helt kostnadsfri.
+          <p className="mt-6 max-w-prose text-lg leading-relaxed text-ink/55">
+            Välj tid, språk och nivå — så hör jag av mig med en bekräftelse.
+            Första samtalet är helt kostnadsfritt.
           </p>
         </div>
 
         {submitted ? (
-          <div className="border-t border-white/15 pt-16 text-center">
-            <p className="eyebrow-sand mb-6">Tack!</p>
-            <h3 className="display-lg mx-auto max-w-2xl text-white text-balance">
-              Din förfrågan om <span className="italic text-sand">{lang}</span> är mottagen.
+          <div className="border-t border-ink/10 pt-16">
+            <p className="eyebrow mb-6">Tack!</p>
+            <h3 className="display-lg max-w-2xl text-ink text-balance">
+              Din förfrågan om{' '}
+              <span className="italic text-teal">{lang}</span> är mottagen.
             </h3>
-            <p className="mt-6 text-white/70">
-              {day} kl. {time}. Jag återkommer inom 24 timmar{form.name ? `, ${form.name}` : ''}.
+            <p className="mt-6 text-ink/55">
+              {day} kl. {time}. Jag återkommer inom 24 timmar
+              {form.name ? `, ${form.name}` : ''}.
             </p>
           </div>
         ) : (
-          <div className="grid gap-14 border-t border-white/15 pt-16 lg:grid-cols-2 lg:gap-20">
-            {/* Val */}
+          <div className="grid gap-14 border-t border-ink/10 pt-16 lg:grid-cols-2 lg:gap-20">
+            {/* Selectors */}
             <div className="flex flex-col gap-10">
               <div>
-                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-white/50">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
                   Dag (denna vecka)
                 </p>
                 <div className="grid grid-cols-5 gap-2">
@@ -69,7 +68,7 @@ export default function Booking() {
               </div>
 
               <div>
-                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-white/50">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
                   Tid
                 </p>
                 <div className="grid grid-cols-4 gap-2">
@@ -82,7 +81,7 @@ export default function Booking() {
               </div>
 
               <div>
-                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-white/50">
+                <p className="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
                   Språk
                 </p>
                 <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -104,19 +103,19 @@ export default function Booking() {
               </div>
 
               {ready && (
-                <div className="border-t border-white/15 pt-6">
-                  <p className="text-xs uppercase tracking-[0.15em] text-white/50">Ditt val</p>
-                  <p className="mt-2 font-display text-2xl text-sand">
+                <div className="border-t border-ink/10 pt-6">
+                  <p className="text-xs uppercase tracking-[0.15em] text-ink/40">Ditt val</p>
+                  <p className="mt-2 font-display text-2xl text-teal">
                     {lang} · {day} kl. {time}
                   </p>
                 </div>
               )}
             </div>
 
-            {/* Formulär */}
+            {/* Form */}
             <form onSubmit={handleSubmit} className="flex flex-col gap-8">
               <div>
-                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-white/50">
+                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
                   Namn
                 </label>
                 <input
@@ -125,12 +124,12 @@ export default function Booking() {
                   placeholder="Ditt fullständiga namn"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="field-dark mt-2"
+                  className="field-light mt-2"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-white/50">
+                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
                   E-post
                 </label>
                 <input
@@ -139,33 +138,33 @@ export default function Booking() {
                   placeholder="din@epost.se"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="field-dark mt-2"
+                  className="field-light mt-2"
                 />
               </div>
 
               <div>
-                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-white/50">
+                <label className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/40">
                   Din nivå &amp; dina mål (valfritt)
                 </label>
                 <textarea
-                  rows={3}
+                  rows={4}
                   placeholder="Berätta kort om var du är idag och vad du vill uppnå…"
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="field-dark mt-2 resize-none"
+                  className="field-light mt-2 resize-none"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={!ready}
-                className="mt-2 inline-flex items-center justify-center gap-2 bg-sand px-8 py-4 text-sm font-semibold tracking-tight text-ink transition-colors hover:bg-sand-light disabled:cursor-not-allowed disabled:opacity-30"
+                className="mt-2 inline-flex items-center justify-center gap-2 bg-ink px-8 py-4 text-sm font-semibold tracking-tight text-white transition-colors hover:bg-teal disabled:cursor-not-allowed disabled:opacity-30"
               >
                 Skicka bokningsförfrågan
                 <ArrowRight className="h-4 w-4" />
               </button>
 
-              <p className="text-xs leading-relaxed text-white/45">
+              <p className="text-xs leading-relaxed text-ink/40">
                 Kostnadsfri första konsultation. Jag bekräftar via e-post inom 24 timmar.
               </p>
             </form>
