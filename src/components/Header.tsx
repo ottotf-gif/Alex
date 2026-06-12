@@ -28,21 +28,21 @@ export default function Header() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'border-b border-ink/8 bg-paper/95 backdrop-blur-md shadow-sm'
-          : 'border-b border-transparent bg-transparent'
+          ? 'bg-cream/90 backdrop-blur-lg shadow-sm'
+          : 'bg-transparent'
       }`}
     >
       <div className="container-x">
         <div className="flex h-20 items-center justify-between">
           <Logo tone="dark" />
 
-          <nav className="hidden items-center gap-9 md:flex">
+          <nav className="hidden items-center gap-8 md:flex">
             {NAV_ITEMS.slice(0, -1).map((item) => (
               <a
                 key={item.href}
                 href={item.href}
                 onClick={(e) => handleNav(e, item.href)}
-                className="text-sm tracking-tight text-ink/55 transition-colors hover:text-ink"
+                className="text-sm font-medium text-ink/50 transition-colors hover:text-ink"
               >
                 {item.label}
               </a>
@@ -52,7 +52,7 @@ export default function Header() {
           <a
             href="#boka"
             onClick={(e) => handleNav(e, '#boka')}
-            className="hidden items-center gap-2 border border-ink/25 px-5 py-2.5 text-sm font-medium tracking-tight text-ink transition-all hover:border-teal hover:text-teal md:inline-flex"
+            className="hidden items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-white transition-all hover:scale-105 hover:bg-teal md:inline-flex"
           >
             Boka lektion
           </a>
@@ -68,17 +68,17 @@ export default function Header() {
       </div>
 
       <div
-        className={`overflow-hidden bg-paper transition-all duration-300 md:hidden ${
+        className={`overflow-hidden bg-cream transition-all duration-300 md:hidden ${
           menuOpen ? 'max-h-96 border-b border-ink/10 opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
-        <nav className="container-x flex flex-col py-3">
+        <nav className="container-x flex flex-col py-4">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={(e) => handleNav(e, item.href)}
-              className="border-b border-ink/8 py-4 text-sm tracking-tight text-ink/70 transition-colors last:border-0 hover:text-teal"
+              className="border-b border-ink/8 py-4 text-sm font-medium text-ink/70 transition-colors last:border-0 hover:text-teal"
             >
               {item.label}
             </a>
