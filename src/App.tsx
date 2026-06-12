@@ -3,14 +3,14 @@ import Hero from './components/Hero';
 import Languages from './components/Languages';
 import Steps from './components/Steps';
 import About from './components/About';
-import VideoSection from './components/YouTube';
+import VideoSection from './components/Youtube';
 import Booking from './components/Booking';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <div className="bg-cream font-sans text-body">
+    <div className="bg-paper font-sans text-body">
       <Header />
       <main>
         <Hero />
