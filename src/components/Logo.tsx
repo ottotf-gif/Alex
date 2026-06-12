@@ -2,14 +2,12 @@ import logoUrl from '../assets/langflologo.png';
 
 interface LogoProps {
   className?: string;
-  /** Behålls för API-kompatibilitet (footern skickar tone="light"), men
-   *  loggan är ett färdigt ordmärke så vi visar samma bild i båda fallen. */
   tone?: 'dark' | 'light';
 }
 
 /**
- * Langflos ordmärke (symbol + text i samma bild).
- * Bilden ligger i src/assets/langflologo.png och importeras av Vite.
+ * Langflos ordmärke (symbol + text i samma transparenta PNG).
+ * Större storlek än tidigare. Transparent bakgrund → funkar ljus och mörk.
  */
 export default function Logo({ className = '' }: LogoProps) {
   return (
@@ -17,7 +15,7 @@ export default function Logo({ className = '' }: LogoProps) {
       <img
         src={logoUrl}
         alt="Langflo"
-        className="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03] md:h-9"
+        className="h-11 w-auto object-contain transition-opacity duration-300 group-hover:opacity-80 md:h-12"
       />
     </a>
   );
