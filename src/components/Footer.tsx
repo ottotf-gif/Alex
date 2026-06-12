@@ -1,4 +1,5 @@
-import { NAV_ITEMS, LANGUAGES } from '../data/content';
+import Logo from './Logo';
+import { NAV_ITEMS, CONTACT } from '../data/content';
 import { scrollToId } from '../lib/scroll';
 
 export default function Footer() {
@@ -7,66 +8,68 @@ export default function Footer() {
     scrollToId(href);
   };
 
+  const email = CONTACT.find((c) => c.label === 'E-post');
+
   return (
-    <footer className="border-t border-white/5 bg-navy text-cream">
-      <div className="container-x py-16">
-        <div className="grid gap-12 md:grid-cols-3">
+    <footer className="bg-navy text-cream">
+      <div className="container-x py-20">
+        {/* Stor avslutande rad (som Ottoniqs "Bygger lugnt, från Bohuslän") */}
+        <div className="grid gap-12 border-b border-white/15 pb-16 md:grid-cols-[1fr_auto] md:items-end">
+          <h2 className="font-display text-4xl leading-tight text-cream md:text-5xl">
+            Redo att börja?<br />
+            <span className="italic text-sand">Hör av dig.</span>
+          </h2>
+          <nav className="flex flex-wrap gap-x-8 gap-y-3">
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleNav(e, item.href)}
+                className="text-sm tracking-tight text-cream/60 transition-colors hover:text-sand"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        </div>
+
+        <div className="mt-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div className="flex flex-col gap-4">
-            <a href="#hem" className="font-display text-2xl tracking-tight text-cream">
-              Lang<span className="text-sand">flo</span>
-            </a>
+            <Logo />
             <p className="max-w-xs text-sm leading-relaxed text-cream/45">
-              Personlig språkundervisning i svenska, engelska, tyska, franska och
-              spanska — anpassad helt efter dig.
+              Personlig språkundervisning i svenska, engelska, tyska, franska och spanska.
             </p>
           </div>
 
-          <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-cream/40">
-              Navigering
-            </p>
-            <nav className="flex flex-col gap-2.5">
-              {NAV_ITEMS.map((item) => (
+          <div className="flex flex-col gap-6 md:flex-row md:gap-16">
+            {email && (
+              <div>
+                <p className="text-xs uppercase tracking-[0.15em] text-cream/35">Kontakt</p>
                 <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => handleNav(e, item.href)}
-                  className="text-sm text-cream/60 transition-colors hover:text-teal-light"
+                  href={email.href ?? '#'}
+                  className="mt-1 inline-block text-sm text-cream/70 transition-colors hover:text-sand"
                 >
-                  {item.label}
+                  {email.value}
                 </a>
-              ))}
-            </nav>
-          </div>
-
-          <div>
-            <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-cream/40">
-              Språk
-            </p>
-            <div className="flex flex-col gap-2.5">
-              {LANGUAGES.map((l) => (
-                <span key={l.name} className="flex items-center gap-2 text-sm text-cream/60">
-                  <span>{l.flag}</span>
-                  <span>{l.name}</span>
-                </span>
-              ))}
+              </div>
+            )}
+            <div>
+              <p className="text-xs uppercase tracking-[0.15em] text-cream/35">Drivs av</p>
+              <a
+                href="https://ottoniq.se"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-block text-sm text-cream/70 transition-colors hover:text-sand"
+              >
+                Ottoniq.se
+              </a>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 sm:flex-row">
-          <p className="text-xs text-cream/30">
-            © {new Date().getFullYear()} Langflo. Alla rättigheter förbehållna.
-          </p>
-          <a
-            href="https://ottoniq.se"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-cream/30 transition-colors hover:text-cream/60"
-          >
-            Drivs av Ottoniq.se
-          </a>
-        </div>
+        <p className="mt-12 text-xs text-cream/30">
+          © {new Date().getFullYear()} Langflo. Alla rättigheter förbehållna.
+        </p>
       </div>
     </footer>
   );
