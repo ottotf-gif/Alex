@@ -12,19 +12,20 @@ export default function Contact() {
   };
 
   return (
-    <section id="kontakt" className="bg-paper py-24 md:py-36">
+    <section id="kontakt" className="bg-paper py-24 text-ink md:py-32">
       <div className="container-x">
         <div className="mb-16 max-w-4xl">
-          <p className="eyebrow mb-6">Kontakt</p>
-          <h2 className="display-lg text-balance">
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.22em] text-teal">
+            Kontakt
+          </p>
+          <h2 className="display-lg text-ink text-balance">
             Berätta vad du <span className="italic text-teal">vill uppnå.</span>
           </h2>
         </div>
 
-        <div className="grid gap-12 border-t border-navy/15 pt-16 lg:grid-cols-[4fr_6fr] lg:gap-20">
-          {/* Vänster: info */}
+        <div className="grid gap-12 border-t border-ink/15 pt-16 lg:grid-cols-[4fr_6fr] lg:gap-20">
           <div className="flex flex-col gap-8">
-            <p className="font-display text-xl text-navy">Jag hör av mig inom en dag.</p>
+            <p className="font-display text-xl text-ink">Jag hör av mig inom en dag.</p>
 
             <div className="flex flex-col gap-6">
               {CONTACT.map((item) => (
@@ -33,22 +34,21 @@ export default function Contact() {
                   {item.href ? (
                     <a
                       href={item.href}
-                      className="mt-1 inline-block border-b border-navy/30 pb-0.5 text-navy transition-colors hover:border-navy"
+                      className="mt-1 inline-block border-b border-ink/30 pb-0.5 text-ink transition-colors hover:border-teal hover:text-teal"
                     >
                       {item.value}
                     </a>
                   ) : (
-                    <p className="mt-1 text-navy">{item.value}</p>
+                    <p className="mt-1 text-ink">{item.value}</p>
                   )}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Höger: formulär */}
           {sent ? (
             <div className="flex flex-col justify-center">
-              <p className="font-display text-3xl text-navy text-balance">
+              <p className="font-display text-3xl text-ink text-balance">
                 Tack för ditt meddelande! Jag återkommer inom ett dygn.
               </p>
             </div>
@@ -64,7 +64,7 @@ export default function Contact() {
                   placeholder="Ditt namn"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="field mt-2"
+                  className="field-light mt-2"
                 />
               </div>
               <div>
@@ -80,7 +80,7 @@ export default function Contact() {
                   placeholder="din@epost.se"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="field mt-2"
+                  className="field-light mt-2"
                 />
               </div>
               <div>
@@ -96,13 +96,10 @@ export default function Contact() {
                   placeholder="Berätta lite om dig och dina mål."
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="field mt-2 resize-none"
+                  className="field-light mt-2 resize-none"
                 />
               </div>
-              <button
-                type="submit"
-                className="link-underline mt-2 w-fit"
-              >
+              <button type="submit" className="link-underline mt-2 w-fit border-ink/40 text-ink hover:border-teal hover:text-teal">
                 Skicka meddelande
                 <ArrowRight className="h-4 w-4" />
               </button>
